@@ -1,2 +1,2 @@
 # math
-C/C++ mathematics library
+Free dependencies C/C++ mathematics library.
