@@ -1,5 +1,5 @@
 # math
-A lightweight, dependency-free C/C++ mathematics library.
+A lightweight, dependency-free and header only C/C++ mathematics library.
 
 ## How to use
 
