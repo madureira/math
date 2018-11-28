@@ -1,8 +1,17 @@
-version: 2
+version: 2.0
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: gcc:latest
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: git submodule init
+      - run: git submodule update
+      - run: make
+      - run: make test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
