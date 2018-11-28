@@ -1,3 +1,6 @@
+# Visual Studio
+
+.vs/
+*.vcxproj.user
 bin/
-lib/
-make/obj/
+packages/
