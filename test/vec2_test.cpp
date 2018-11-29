@@ -91,4 +91,100 @@ namespace {
 		EXPECT_EQ(position.y, 10.0f);
 	}
 
+	TEST_F(Vec2Test, operatorAdd)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position = position + coordinates;
+
+		EXPECT_EQ(position.x, 22.0f);
+		EXPECT_EQ(position.y, 33.0f);
+	}
+
+	TEST_F(Vec2Test, operatorSubtract)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position = position - coordinates;
+
+		EXPECT_EQ(position.x, 18.0f);
+		EXPECT_EQ(position.y, 27.0f);
+	}
+
+	TEST_F(Vec2Test, operatorMultiply)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position = position * coordinates;
+
+		EXPECT_EQ(position.x, 40.0f);
+		EXPECT_EQ(position.y, 90.0f);
+	}
+
+	TEST_F(Vec2Test, operatorDivide)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position = position / coordinates;
+
+		EXPECT_EQ(position.x, 10.0f);
+		EXPECT_EQ(position.y, 10.0f);
+	}
+
+	TEST_F(Vec2Test, operatorPlusEquals)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position += coordinates;
+
+		EXPECT_EQ(position.x, 22.0f);
+		EXPECT_EQ(position.y, 33.0f);
+	}
+
+	TEST_F(Vec2Test, operatorMinusEquals)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position -= coordinates;
+
+		EXPECT_EQ(position.x, 18.0f);
+		EXPECT_EQ(position.y, 27.0f);
+	}
+
+	TEST_F(Vec2Test, operatorTimesEquals)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position *= coordinates;
+
+		EXPECT_EQ(position.x, 40.0f);
+		EXPECT_EQ(position.y, 90.0f);
+	}
+
+	TEST_F(Vec2Test, operatorDevideEquals)
+	{
+		math::vec2 position(20.0f, 30.0f);
+
+		math::vec2 coordinates(2.0f, 3.0f);
+
+		position /= coordinates;
+
+		EXPECT_EQ(position.x, 10.0f);
+		EXPECT_EQ(position.y, 10.0f);
+	}
+
 }
