@@ -4,3 +4,5 @@
 *.vcxproj.user
 bin/
 packages/
+*.o
+*.a
