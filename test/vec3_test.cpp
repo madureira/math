@@ -7,121 +7,102 @@ namespace {
 
 	TEST_F(Vec3Test, setDefaultValues)
 	{
-		math::vec3 position;
+		math::vec3 vec;
 
-		EXPECT_EQ(position.x, 0.0f);
-		EXPECT_EQ(position.y, 0.0f);
-		EXPECT_EQ(position.z, 0.0f);
+		EXPECT_EQ(vec.x, 0.0f);
+		EXPECT_EQ(vec.y, 0.0f);
+		EXPECT_EQ(vec.z, 0.0f);
 	}
 
 	TEST_F(Vec3Test, setValuesByConstructor)
 	{
-		math::vec3 position(10.0, 20.0f, 30.0f);
+		math::vec3 vec(10.0, 20.0f, 30.0f);
 
-		EXPECT_EQ(position.x, 10.0f);
-		EXPECT_EQ(position.y, 20.0f);
-		EXPECT_EQ(position.z, 30.0f);
+		EXPECT_EQ(vec.x, 10.0f);
+		EXPECT_EQ(vec.y, 20.0f);
+		EXPECT_EQ(vec.z, 30.0f);
 	}
 
 	TEST_F(Vec3Test, initiateANewVec3ByCopy)
 	{
-		math::vec3 position(10.0, 20.0f, 30.0f);
+		math::vec3 vec(math::vec3(10.0, 20.0f, 30.0f));
 
-		math::vec3 color(position);
-
-		EXPECT_EQ(color.x, 10.0f);
-		EXPECT_EQ(color.y, 20.0f);
-		EXPECT_EQ(color.z, 30.0f);
+		EXPECT_EQ(vec.x, 10.0f);
+		EXPECT_EQ(vec.y, 20.0f);
+		EXPECT_EQ(vec.z, 30.0f);
 	}
 
 	TEST_F(Vec3Test, initiateANewVec2ByCopy)
 	{
-		math::vec2 position(10.0, 20.0f);
+		math::vec3 vec(math::vec2(10.0, 20.0f), 30.0f);
 
-		math::vec3 color(position, 30.0f);
-
-		EXPECT_EQ(color.x, 10.0f);
-		EXPECT_EQ(color.y, 20.0f);
-		EXPECT_EQ(color.z, 30.0f);
+		EXPECT_EQ(vec.x, 10.0f);
+		EXPECT_EQ(vec.y, 20.0f);
+		EXPECT_EQ(vec.z, 30.0f);
 	}
 
 	TEST_F(Vec3Test, setX)
 	{
-		math::vec3 position;
+		math::vec3 vec;
+		vec.x = 30.0f;
 
-		position.x = 30.0f;
-
-		EXPECT_EQ(position.x, 30.0f);
+		EXPECT_EQ(vec.x, 30.0f);
 	}
 
 	TEST_F(Vec3Test, setY)
 	{
-		math::vec3 position;
+		math::vec3 vec;
+		vec.y = 20.0f;
 
-		position.y = 20.0f;
-
-		EXPECT_EQ(position.y, 20.0f);
+		EXPECT_EQ(vec.y, 20.0f);
 	}
 
 	TEST_F(Vec3Test, setZ)
 	{
-		math::vec3 position;
+		math::vec3 vec;
+		vec.z = 10.0f;
 
-		position.z = 10.0f;
-
-		EXPECT_EQ(position.z, 10.0f);
+		EXPECT_EQ(vec.z, 10.0f);
 	}
 
 	TEST_F(Vec3Test, addAVec3)
 	{
-		math::vec3 position(10.0f, 20.0f, 30.0f);
+		math::vec3 vec(10.0f, 20.0f, 30.0f);
+		vec.add(math::vec3(20.0f, 30.0f, 40.0f));
 
-		math::vec3 coordinates(20.0f, 30.0f, 40.0f);
-
-		position.add(coordinates);
-
-		EXPECT_EQ(position.x, 30.0f);
-		EXPECT_EQ(position.y, 50.0f);
-		EXPECT_EQ(position.z, 70.0f);
+		EXPECT_EQ(vec.x, 30.0f);
+		EXPECT_EQ(vec.y, 50.0f);
+		EXPECT_EQ(vec.z, 70.0f);
 	}
 
 	TEST_F(Vec3Test, addAVec2)
 	{
-		math::vec3 position(10.0f, 20.0f, 30.0f);
+		math::vec3 vec(10.0f, 20.0f, 30.0f);
+		vec.add(math::vec2(20.0f, 30.0f));
 
-		math::vec2 coordinates(20.0f, 30.0f);
-
-		position.add(coordinates);
-
-		EXPECT_EQ(position.x, 30.0f);
-		EXPECT_EQ(position.y, 50.0f);
-		EXPECT_EQ(position.z, 30.0f);
+		EXPECT_EQ(vec.x, 30.0f);
+		EXPECT_EQ(vec.y, 50.0f);
+		EXPECT_EQ(vec.z, 30.0f);
 	}
 
 	TEST_F(Vec3Test, subtractAVec3)
 	{
-		math::vec3 position(10.0f, 20.0f, 30.0f);
+		math::vec3 vec(10.0f, 20.0f, 30.0f);
+		vec.subtract(math::vec3(4.0f, 5.0f, 6.0f));
 
-		math::vec3 coordinates(4.0f, 5.0f, 6.0f);
-
-		position.subtract(coordinates);
-
-		EXPECT_EQ(position.x, 6.0f);
-		EXPECT_EQ(position.y, 15.0f);
-		EXPECT_EQ(position.z, 24.0f);
+		EXPECT_EQ(vec.x, 6.0f);
+		EXPECT_EQ(vec.y, 15.0f);
+		EXPECT_EQ(vec.z, 24.0f);
 	}
 
 	TEST_F(Vec3Test, subtractAVec2)
 	{
-		math::vec3 position(10.0f, 20.0f, 30.0f);
+		math::vec3 vec(10.0f, 20.0f, 30.0f);
+		vec.subtract(math::vec2(4.0f, 5.0f));
 
-		math::vec2 coordinates(4.0f, 5.0f);
-
-		position.subtract(coordinates);
-
-		EXPECT_EQ(position.x, 6.0f);
-		EXPECT_EQ(position.y, 15.0f);
-		EXPECT_EQ(position.z, 30.0f);
+		EXPECT_EQ(vec.x, 6.0f);
+		EXPECT_EQ(vec.y, 15.0f);
+		EXPECT_EQ(vec.z, 30.0f);
 	}
 
 }
