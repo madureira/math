@@ -7,7 +7,6 @@ jobs:
       - checkout
       - run: git submodule init
       - run: git submodule update
-      - run: make
       - run: make test
 
 workflows:

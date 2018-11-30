@@ -25,12 +25,6 @@ git submodule init
 git submodule update
 ```
 
-### Building tests
-
-```
-make
-```
-
 ### Running tests
 
 ```
