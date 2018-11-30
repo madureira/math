@@ -1,5 +1,5 @@
 # math
-A lightweight, dependency-free and header only C/C++ mathematics library.
+A lightweight, dependency-free and header only C++ mathematics library.
 
 [![Circle CI](https://circleci.com/gh/madureira/math.svg?style=svg)](https://circleci.com/gh/madureira/math)
 
