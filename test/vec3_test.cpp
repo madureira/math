@@ -14,6 +14,15 @@ namespace {
 		EXPECT_EQ(vec.z, 0.0f);
 	}
 
+	TEST_F(Vec3Test, setScalar)
+	{
+		math::vec3 vec(5.0f);
+
+		EXPECT_EQ(vec.x, 5.0f);
+		EXPECT_EQ(vec.y, 5.0f);
+		EXPECT_EQ(vec.z, 5.0f);
+	}
+
 	TEST_F(Vec3Test, setValuesByConstructor)
 	{
 		math::vec3 vec(10.0, 20.0f, 30.0f);

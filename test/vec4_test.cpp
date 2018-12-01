@@ -15,6 +15,16 @@ namespace {
 		EXPECT_EQ(vec.w, 0.0f);
 	}
 
+	TEST_F(Vec4Test, setScalar)
+	{
+		math::vec4 vec(5.0f);
+
+		EXPECT_EQ(vec.x, 5.0f);
+		EXPECT_EQ(vec.y, 5.0f);
+		EXPECT_EQ(vec.z, 5.0f);
+		EXPECT_EQ(vec.w, 5.0f);
+	}
+
 	TEST_F(Vec4Test, setValuesByContructor)
 	{
 		math::vec4 vec(10.0f, 20.0f, 30.0f, 40.0f);

@@ -6,6 +6,7 @@ namespace math {
 		float x, y;
 
 		vec2() : x(0), y(0) {}
+		vec2(float scalar) : x(scalar), y(scalar) {}
 		vec2(const float x, const float y) : x(x), y(y) {}
 		vec2(const vec2& v) : x(v.x), y(v.y) {}
 

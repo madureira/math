@@ -6,6 +6,7 @@ namespace math {
 		float x, y, z, w;
 
 		vec4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
+		vec4(float scalar) : x(scalar), y(scalar), z(scalar), w(scalar) {}
 		vec4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 		vec4(const vec4& v) : x(v.x), y(v.y), z(v.z), w(v.w) {}
 

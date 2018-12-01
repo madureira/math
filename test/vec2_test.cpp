@@ -13,6 +13,14 @@ namespace {
 		EXPECT_EQ(vec.y, 0.0f);
 	}
 
+	TEST_F(Vec2Test, setScalar)
+	{
+		math::vec2 vec(5.0f);
+
+		EXPECT_EQ(vec.x, 5.0f);
+		EXPECT_EQ(vec.y, 5.0f);
+	}
+
 	TEST_F(Vec2Test, setValuesByConstructor)
 	{
 		math::vec2 vec(1.5f, 2.0f);
