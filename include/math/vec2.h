@@ -80,6 +80,16 @@ namespace math {
 		{
 			return divide(v);
 		}
+
+		bool operator==(const vec2& v)
+		{
+			return (x == v.x && y == v.y);
+		}
+
+		bool operator!=(const vec2& v)
+		{
+			return (x != v.x && y != v.y);
+		}
 	};
 
 }

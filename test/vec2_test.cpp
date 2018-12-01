@@ -82,7 +82,7 @@ namespace {
 		EXPECT_EQ(vec.y, 10.0f);
 	}
 
-	TEST_F(Vec2Test, operatorAdd)
+	TEST_F(Vec2Test, operatorPlus)
 	{
 		math::vec2 vec(20.0f, 30.0f);
 
@@ -92,7 +92,7 @@ namespace {
 		EXPECT_EQ(vec.y, 33.0f);
 	}
 
-	TEST_F(Vec2Test, operatorSubtract)
+	TEST_F(Vec2Test, operatorMinus)
 	{
 		math::vec2 vec(20.0f, 30.0f);
 		vec = vec - math::vec2(2.0f, 3.0f);
@@ -101,7 +101,7 @@ namespace {
 		EXPECT_EQ(vec.y, 27.0f);
 	}
 
-	TEST_F(Vec2Test, operatorMultiply)
+	TEST_F(Vec2Test, operatorTimes)
 	{
 		math::vec2 vec(20.0f, 30.0f);
 		vec = vec * math::vec2(2.0f, 3.0f);
@@ -110,7 +110,7 @@ namespace {
 		EXPECT_EQ(vec.y, 90.0f);
 	}
 
-	TEST_F(Vec2Test, operatorDivide)
+	TEST_F(Vec2Test, operatorSlash)
 	{
 		math::vec2 vec(20.0f, 30.0f);
 		vec = vec / math::vec2(2.0f, 3.0f);
@@ -146,13 +146,33 @@ namespace {
 		EXPECT_EQ(vec.y, 90.0f);
 	}
 
-	TEST_F(Vec2Test, operatorDevideEquals)
+	TEST_F(Vec2Test, operatorSlashEquals)
 	{
 		math::vec2 vec(20.0f, 30.0f);
 		vec /= math::vec2(2.0f, 3.0f);
 
 		EXPECT_EQ(vec.x, 10.0f);
 		EXPECT_EQ(vec.y, 10.0f);
+	}
+
+	TEST_F(Vec2Test, operatorEqualsEquals)
+	{
+		math::vec2 position(20.0f, 30.0f);
+		math::vec2 coordinates(20.0f, 30.0f);
+		math::vec2 anotherVec(111.0f, 222.0f);
+
+		EXPECT_TRUE(position == coordinates);
+		EXPECT_FALSE(position == anotherVec);
+	}
+
+	TEST_F(Vec2Test, operatorNotEquals)
+	{
+		math::vec2 position(20.0f, 30.0f);
+		math::vec2 coordinates(20.0f, 30.0f);
+		math::vec2 anotherVec(111.0f, 222.0f);
+
+		EXPECT_FALSE(position != coordinates);
+		EXPECT_TRUE(position != anotherVec);
 	}
 
 }
