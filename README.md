@@ -9,6 +9,8 @@ Add the `include` directory to your include path.
 
 ```c
 #include <math/vec2.h>
+#include <math/vec3.h>
+#include <math/vec4.h>
 
 math::vec2 coordinates(10.0f, 15.0f);
 coordinates.add(math::vec2(20.0f, 30.0f));
