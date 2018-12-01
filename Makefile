@@ -10,7 +10,7 @@ INCLUDES_DIR = ./include
 TESTS_DIR = ./test
 
 # Test file names without .cpp extension.
-TESTS = vec2_test vec3_test
+TESTS = vec2_test vec3_test vec4_test
 
 # Flags passed to the preprocessor.
 # Set Google Test's header directory as a system directory, such that
@@ -56,13 +56,20 @@ vec2_test.o :
 vec3_test.o :
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TESTS_DIR)/vec3_test.cpp
 
+vec4_test.o :
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TESTS_DIR)/vec4_test.cpp
+
 vec2_test : vec2_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 vec3_test : vec3_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+vec4_test : vec4_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-test: vec2_test vec3_test clean
+
+test: vec2_test vec3_test vec4_test clean
 	./bin/vec2_test && \
-	./bin/vec3_test
+	./bin/vec3_test && \
+	./bin/vec4_test

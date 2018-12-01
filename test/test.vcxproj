@@ -64,6 +64,7 @@
     </ClCompile>
     <ClCompile Include="vec2_test.cpp" />
     <ClCompile Include="vec3_test.cpp" />
+    <ClCompile Include="vec4_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\include\include.vcxproj">

@@ -21,5 +21,8 @@
     <ClInclude Include="math\vec3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="math\vec4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
