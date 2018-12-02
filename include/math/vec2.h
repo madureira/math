@@ -12,36 +12,36 @@ namespace math {
 		vec2() : x(0), y(0) {}
 		vec2(float scalar) : x(scalar), y(scalar) {}
 		vec2(const float x, const float y) : x(x), y(y) {}
-		vec2(const vec2& v) : x(v.x), y(v.y) {}
+		vec2(const vec2& vector) : x(vector.x), y(vector.y) {}
 
-		vec2& add(const vec2& v)
+		vec2& add(const vec2& vector)
 		{
-			x += v.x;
-			y += v.y;
+			x += vector.x;
+			y += vector.y;
 
 			return *this;
 		}
 
-		vec2& subtract(const vec2& v)
+		vec2& subtract(const vec2& vector)
 		{
-			x -= v.x;
-			y -= v.y;
+			x -= vector.x;
+			y -= vector.y;
 
 			return *this;
 		}
 
-		vec2& multiply(const vec2& v)
+		vec2& multiply(const vec2& vector)
 		{
-			x *= v.x;
-			y *= v.y;
+			x *= vector.x;
+			y *= vector.y;
 
 			return *this;
 		}
 
-		vec2& divide(const vec2& v)
+		vec2& divide(const vec2& vector)
 		{
-			x /= v.x;
-			y /= v.y;
+			x /= vector.x;
+			y /= vector.y;
 
 			return *this;
 		}
@@ -118,24 +118,24 @@ namespace math {
 			return vec2(left.x / scalar, left.y / scalar);
 		}
 
-		vec2& operator+=(const vec2& v)
+		vec2& operator+=(const vec2& vector)
 		{
-			return add(v);
+			return add(vector);
 		}
 
-		vec2& operator-=(const vec2& v)
+		vec2& operator-=(const vec2& vector)
 		{
-			return subtract(v);
+			return subtract(vector);
 		}
 
-		vec2& operator*=(const vec2& v)
+		vec2& operator*=(const vec2& vector)
 		{
-			return multiply(v);
+			return multiply(vector);
 		}
 
-		vec2 operator/=(const vec2& v)
+		vec2 operator/=(const vec2& vector)
 		{
-			return divide(v);
+			return divide(vector);
 		}
 
 		vec2& operator+=(float scalar)
@@ -158,39 +158,44 @@ namespace math {
 			return divide(scalar);
 		}
 
-		bool operator==(const vec2& v) const
+		bool operator==(const vec2& vector) const
 		{
-			return (x == v.x && y == v.y);
+			return (x == vector.x && y == vector.y);
 		}
 
-		bool operator!=(const vec2& v) const
+		bool operator!=(const vec2& vector) const
 		{
-			return (x != v.x && y != v.y);
+			return (x != vector.x && y != vector.y);
 		}
 
-		bool operator<(const vec2& v) const
+		bool operator<(const vec2& vector) const
 		{
-			return x < v.x && y < v.y;
+			return x < vector.x && y < vector.y;
 		}
 
-		bool operator<=(const vec2& v) const
+		bool operator<=(const vec2& vector) const
 		{
-			return x <= v.x && y <= v.y;
+			return x <= vector.x && y <= vector.y;
 		}
 
-		bool operator>(const vec2& v) const
+		bool operator>(const vec2& vector) const
 		{
-			return x > v.x && y > v.y;
+			return x > vector.x && y > vector.y;
 		}
 
-		bool operator>=(const vec2& v) const
+		bool operator>=(const vec2& vector) const
 		{
-			return x >= v.x && y >= v.y;
+			return x >= vector.x && y >= vector.y;
 		}
 
-		float dot(const vec2& v) const
+		friend vec2 operator-(const vec2& vector)
 		{
-			return x * v.x + y * v.y;
+			return vec2(-vector.x, -vector.y);
+		}
+
+		float dot(const vec2& vector) const
+		{
+			return x * vector.x + y * vector.y;
 		}
 
 		float magnitude() const
@@ -198,10 +203,10 @@ namespace math {
 			return std::sqrt(x * x + y * y);
 		}
 
-		float distance(const vec2& v) const
+		float distance(const vec2& vector) const
 		{
-			float a = x - v.x;
-			float b = y - v.y;
+			float a = x - vector.x;
+			float b = y - vector.y;
 
 			return std::sqrt(a * a + b * b);
 		}

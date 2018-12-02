@@ -332,6 +332,20 @@ namespace {
 		EXPECT_TRUE(vecOne >= vecThree);
 	}
 
+	TEST_F(Vec2Test, negateTheVec2)
+	{
+		math::vec2 vecOne(20.0f, 30.0f);
+		math::vec2 vecTwo(-80.0f, -90.0f);
+
+		vecOne = -vecOne;
+		vecTwo = -vecTwo;
+
+		EXPECT_EQ(vecOne.x, -20.0f);
+		EXPECT_EQ(vecOne.y, -30.0f);
+		EXPECT_EQ(vecTwo.x, 80.0f);
+		EXPECT_EQ(vecTwo.y, 90.0f);
+	}
+
 	TEST_F(Vec2Test, dotProduct)
 	{
 		math::vec2 vecOne(20.0f, 30.0f);
