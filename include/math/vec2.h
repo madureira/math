@@ -1,5 +1,6 @@
 #pragma once
 
+#include <math.h>
 #include <sstream>
 #include <string>
 
@@ -194,7 +195,7 @@ namespace math {
 
 		float magnitude() const
 		{
-			return sqrt(x * x + y * y);
+			return std::sqrt(x * x + y * y);
 		}
 
 		float distance(const vec2& v) const
@@ -202,7 +203,7 @@ namespace math {
 			float a = x - v.x;
 			float b = y - v.y;
 
-			return sqrt(a * a + b * b);
+			return std::sqrt(a * a + b * b);
 		}
 
 		vec2 normalize() const
