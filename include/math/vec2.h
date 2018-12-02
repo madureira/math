@@ -1,5 +1,8 @@
 #pragma once
 
+#include <sstream>
+#include <string>
+
 namespace math {
 
 	struct vec2 {
@@ -42,6 +45,38 @@ namespace math {
 			return *this;
 		}
 
+		vec2& add(float scalar)
+		{
+			x += scalar;
+			y += scalar;
+
+			return *this;
+		}
+
+		vec2& subtract(float scalar)
+		{
+			x -= scalar;
+			y -= scalar;
+
+			return *this;
+		}
+
+		vec2& multiply(float scalar)
+		{
+			x *= scalar;
+			y *= scalar;
+
+			return *this;
+		}
+
+		vec2& divide(float scalar)
+		{
+			x /= scalar;
+			y /= scalar;
+
+			return *this;
+		}
+
 		friend vec2 operator+(vec2 left, const vec2& right)
 		{
 			return left.add(right);
@@ -60,6 +95,26 @@ namespace math {
 		friend vec2 operator/(vec2 left, const vec2& right)
 		{
 			return left.divide(right);
+		}
+
+		friend vec2 operator+(vec2 left, float scalar)
+		{
+			return vec2(left.x + scalar, left.y + scalar);
+		}
+
+		friend vec2 operator-(vec2 left, float scalar)
+		{
+			return vec2(left.x - scalar, left.y - scalar);
+		}
+
+		friend vec2 operator*(vec2 left, float scalar)
+		{
+			return vec2(left.x * scalar, left.y * scalar);
+		}
+
+		friend vec2 operator/(vec2 left, float scalar)
+		{
+			return vec2(left.x / scalar, left.y / scalar);
 		}
 
 		vec2& operator+=(const vec2& v)
@@ -82,14 +137,54 @@ namespace math {
 			return divide(v);
 		}
 
-		bool operator==(const vec2& v)
+		vec2& operator+=(float scalar)
+		{
+			return add(scalar);
+		}
+
+		vec2& operator-=(float scalar)
+		{
+			return subtract(scalar);
+		}
+
+		vec2& operator*=(float scalar)
+		{
+			return multiply(scalar);
+		}
+
+		vec2& operator/=(float scalar)
+		{
+			return divide(scalar);
+		}
+
+		bool operator==(const vec2& v) const
 		{
 			return (x == v.x && y == v.y);
 		}
 
-		bool operator!=(const vec2& v)
+		bool operator!=(const vec2& v) const
 		{
 			return (x != v.x && y != v.y);
+		}
+
+		bool operator<(const vec2& v) const
+		{
+			return x < v.x && y < v.y;
+		}
+
+		bool operator<=(const vec2& v) const
+		{
+			return x <= v.x && y <= v.y;
+		}
+
+		bool operator>(const vec2& v) const
+		{
+			return x > v.x && y > v.y;
+		}
+
+		bool operator>=(const vec2& v) const
+		{
+			return x >= v.x && y >= v.y;
 		}
 
 		float dot(const vec2& v) const
@@ -114,6 +209,19 @@ namespace math {
 		{
 			float lenght = magnitude();
 			return vec2(x / lenght, y / lenght);
+		}
+
+		std::string toString() const
+		{
+			std::stringstream result;
+			result << "vec2:(" << x << ", " << y << ")";
+			return result.str();
+		}
+
+		friend std::ostream& operator<<(std::ostream& stream, const vec2& vector)
+		{
+			stream << vector.toString();
+			return stream;
 		}
 	};
 
