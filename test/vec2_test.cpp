@@ -1,6 +1,5 @@
 #include "pch.h"
 #include <math/vec2.h>
-#include <iostream>
 
 namespace {
 
