@@ -183,4 +183,43 @@ namespace {
 		EXPECT_TRUE(position != anotherVec);
 	}
 
+	TEST_F(Vec2Test, dotProduct)
+	{
+		math::vec2 vecOne(20.0f, 30.0f);
+		math::vec2 vecTwo(3.0f, 2.0f);
+
+		float dotProduct = vecOne.dot(vecTwo);
+
+		EXPECT_EQ(dotProduct, 120);
+	}
+
+	TEST_F(Vec2Test, magnitude)
+	{
+		math::vec2 vec(3.0f, 4.0f);
+
+		float magnitude = vec.magnitude();
+
+		EXPECT_EQ(magnitude, 5.0f);
+	}
+
+	TEST_F(Vec2Test, distance)
+	{
+		math::vec2 vecOne(3.0f, 4.0f);
+		math::vec2 vecTwo(6.0f, 0.0f);
+
+		float distance = vecOne.distance(vecTwo);
+
+		EXPECT_EQ(distance, 5.0f);
+	}
+
+	TEST_F(Vec2Test, normalize)
+	{
+		math::vec2 vec(3.0f, 4.0f);
+
+		math::vec2 normalized = vec.normalize();
+
+		EXPECT_EQ(normalized.x, 0.6f);
+		EXPECT_EQ(normalized.y, 0.8f);
+	}
+
 }

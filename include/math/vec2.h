@@ -91,6 +91,30 @@ namespace math {
 		{
 			return (x != v.x && y != v.y);
 		}
+
+		float dot(const vec2& v) const
+		{
+			return x * v.x + y * v.y;
+		}
+
+		float magnitude() const
+		{
+			return sqrt(x * x + y * y);
+		}
+
+		float distance(const vec2& v) const
+		{
+			float a = x - v.x;
+			float b = y - v.y;
+
+			return sqrt(a * a + b * b);
+		}
+
+		vec2 normalize() const
+		{
+			float lenght = magnitude();
+			return vec2(x / lenght, y / lenght);
+		}
 	};
 
 }
