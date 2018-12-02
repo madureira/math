@@ -360,7 +360,7 @@ namespace {
 	{
 		math::vec2 vec(3.0f, 4.0f);
 
-		float magnitude = vec.magnitude();
+		float magnitude = vec.length();
 
 		EXPECT_EQ(magnitude, 5.0f);
 	}

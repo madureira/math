@@ -160,12 +160,12 @@ namespace math {
 
 		bool operator==(const vec2& vector) const
 		{
-			return (x == vector.x && y == vector.y);
+			return x == vector.x && y == vector.y;
 		}
 
 		bool operator!=(const vec2& vector) const
 		{
-			return (x != vector.x && y != vector.y);
+			return x != vector.x && y != vector.y;
 		}
 
 		bool operator<(const vec2& vector) const
@@ -198,7 +198,7 @@ namespace math {
 			return x * vector.x + y * vector.y;
 		}
 
-		float magnitude() const
+		float length() const
 		{
 			return std::sqrt(x * x + y * y);
 		}
@@ -213,8 +213,8 @@ namespace math {
 
 		vec2 normalize() const
 		{
-			float lenght = magnitude();
-			return vec2(x / lenght, y / lenght);
+			float magnitude = length();
+			return vec2(x / magnitude, y / magnitude);
 		}
 
 		std::string toString() const
