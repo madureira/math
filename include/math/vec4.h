@@ -1,5 +1,9 @@
 #pragma once
 
+#include <math.h>
+#include <sstream>
+#include <string>
+
 namespace math {
 
 	struct vec4 {
@@ -8,44 +12,82 @@ namespace math {
 		vec4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
 		vec4(float scalar) : x(scalar), y(scalar), z(scalar), w(scalar) {}
 		vec4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
-		vec4(const vec4& v) : x(v.x), y(v.y), z(v.z), w(v.w) {}
+		vec4(const vec4& vector) : x(vector.x), y(vector.y), z(vector.z), w(vector.w) {}
 
-		vec4& add(const vec4& v)
+		vec4& add(const vec4& vector)
 		{
-			x += v.x;
-			y += v.y;
-			z += v.z;
-			w += v.w;
+			x += vector.x;
+			y += vector.y;
+			z += vector.z;
+			w += vector.w;
 
 			return *this;
 		}
 
-		vec4& subtract(const vec4& v)
+		vec4& subtract(const vec4& vector)
 		{
-			x -= v.x;
-			y -= v.y;
-			z -= v.z;
-			w -= v.w;
+			x -= vector.x;
+			y -= vector.y;
+			z -= vector.z;
+			w -= vector.w;
 
 			return *this;
 		}
 
-		vec4& multiply(const vec4& v)
+		vec4& multiply(const vec4& vector)
 		{
-			x *= v.x;
-			y *= v.y;
-			z *= v.z;
-			w *= v.w;
+			x *= vector.x;
+			y *= vector.y;
+			z *= vector.z;
+			w *= vector.w;
 
 			return *this;
 		}
 
-		vec4& divide(const vec4& v)
+		vec4& divide(const vec4& vector)
 		{
-			x /= v.x;
-			y /= v.y;
-			z /= v.z;
-			w /= v.w;
+			x /= vector.x;
+			y /= vector.y;
+			z /= vector.z;
+			w /= vector.w;
+
+			return *this;
+		}
+
+		vec4& add(float scalar) {
+			x += scalar;
+			y += scalar;
+			z += scalar;
+			w += scalar;
+
+			return *this;
+		}
+
+		vec4& subtract(float scalar) {
+			x -= scalar;
+			y -= scalar;
+			z -= scalar;
+			w -= scalar;
+
+			return *this;
+		}
+
+		vec4& multiply(float scalar)
+		{
+			x *= scalar;
+			y *= scalar;
+			z *= scalar;
+			w *= scalar;
+
+			return *this;
+		}
+
+		vec4& divide(float scalar)
+		{
+			x /= scalar;
+			y /= scalar;
+			z /= scalar;
+			w /= scalar;
 
 			return *this;
 		}
@@ -70,34 +112,127 @@ namespace math {
 			return left.divide(right);
 		}
 
-		vec4& operator+=(const vec4& v)
+		friend vec4 operator+(vec4 left, float scalar)
 		{
-			return add(v);
+			return vec4(left.x + scalar, left.y + scalar, left.z + scalar, left.w + scalar);
 		}
 
-		vec4& operator-=(const vec4& v)
+		friend vec4 operator-(vec4 left, float scalar)
 		{
-			return subtract(v);
+			return vec4(left.x - scalar, left.y - scalar, left.z - scalar, left.w - scalar);
 		}
 
-		vec4& operator*=(const vec4& v)
+		friend vec4 operator*(vec4 left, float scalar)
 		{
-			return multiply(v);
+			return vec4(left.x * scalar, left.y * scalar, left.z * scalar, left.w * scalar);
 		}
 
-		vec4& operator/=(const vec4& v)
+		friend vec4 operator/(vec4 left, float scalar)
 		{
-			return divide(v);
+			return vec4(left.x / scalar, left.y / scalar, left.z / scalar, left.w / scalar);
 		}
 
-		bool operator==(const vec4& v)
+		vec4& operator+=(const vec4& vector)
 		{
-			return (x == v.x && y == v.y && z == v.z && w == v.w);
+			return add(vector);
 		}
 
-		bool operator!=(const vec4& v)
+		vec4& operator-=(const vec4& vector)
 		{
-			return (x != v.x && y != v.y && z != v.z && w != v.w);
+			return subtract(vector);
+		}
+
+		vec4& operator*=(const vec4& vector)
+		{
+			return multiply(vector);
+		}
+
+		vec4& operator/=(const vec4& vector)
+		{
+			return divide(vector);
+		}
+
+		vec4& operator+=(float scalar)
+		{
+			return add(scalar);
+		}
+
+		vec4& operator-=(float scalar)
+		{
+			return subtract(scalar);
+		}
+
+		vec4& operator*=(float scalar)
+		{
+			return multiply(scalar);
+		}
+
+		vec4& operator/=(float scalar)
+		{
+			return divide(scalar);
+		}
+
+		bool operator<(const vec4& vector) const
+		{
+			return x < vector.x && y < vector.y && z < vector.z && w < vector.w;
+		}
+
+		bool operator<=(const vec4& vector) const
+		{
+			return x <= vector.x && y <= vector.y && z <= vector.z && w <= vector.w;
+		}
+
+		bool operator>(const vec4& vector) const
+		{
+			return x > vector.x && y > vector.y && z > vector.z && w > vector.w;
+		}
+
+		bool operator>=(const vec4& vector) const
+		{
+			return x >= vector.x && y >= vector.y && z >= vector.z && w >= vector.w;
+		}
+
+		friend vec4 operator-(const vec4& vector)
+		{
+			return vec4(-vector.x, -vector.y, -vector.z, -vector.w);
+		}
+
+		bool operator==(const vec4& vector)
+		{
+			return (x == vector.x && y == vector.y && z == vector.z && w == vector.w);
+		}
+
+		bool operator!=(const vec4& vector)
+		{
+			return (x != vector.x && y != vector.y && z != vector.z && w != vector.w);
+		}
+
+		float length() const
+		{
+			return std::sqrt(x * x + y * y + z * z + w * w);
+		}
+
+		float distance(const vec4& vector) const
+		{
+			float a = x - vector.x;
+			float b = y - vector.y;
+			float c = z - vector.z;
+			float d = w - vector.w;
+
+			return std::sqrt(a * a + b * b + c * c + d * d);
+		}
+
+		std::string toString() const
+		{
+			std::stringstream result;
+			result << "vec4:(" << x << ", " << y << ", " << z  << ", " << w << ")";
+			return result.str();
+		}
+
+		friend std::ostream& operator<<(std::ostream& stream, const vec4& vector)
+		{
+			stream << vector.toString();
+			return stream;
 		}
 	};
 

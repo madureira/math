@@ -361,7 +361,7 @@ namespace {
 		EXPECT_TRUE(vecOne >= vecThree);
 	}
 
-	TEST_F(Vec3Test, negateTheVec2)
+	TEST_F(Vec3Test, negateTheVec4)
 	{
 		math::vec3 vecOne(20.0f, 30.0f, 40.0f);
 		math::vec3 vecTwo(-80.0f, -90.0f, -10.0f);
@@ -427,6 +427,15 @@ namespace {
 		EXPECT_FLOAT_EQ(normalized.x, 0.37139067f);
 		EXPECT_FLOAT_EQ(normalized.y, 0.55708605f);
 		EXPECT_FLOAT_EQ(normalized.z, 0.74278134f);
+	}
+
+	TEST_F(Vec3Test, toString)
+	{
+		math::vec3 vec(1.0f, 2.0f, 3.0f);
+
+		std::string output = vec.toString();
+
+		EXPECT_EQ(output, "vec3:(1, 2, 3)");
 	}
 
 }

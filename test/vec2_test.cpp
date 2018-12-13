@@ -385,4 +385,13 @@ namespace {
 		EXPECT_EQ(normalized.y, 0.8f);
 	}
 
+	TEST_F(Vec2Test, toString)
+	{
+		math::vec2 vec(3.0f, 4.0f);
+
+		std::string output = vec.toString();
+
+		EXPECT_EQ(output, "vec2:(3, 4)");
+	}
+
 }
