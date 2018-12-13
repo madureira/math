@@ -222,6 +222,11 @@ namespace math {
 			return std::sqrt(a * a + b * b + c * c + d * d);
 		}
 
+		float dot(const vec4& vector)
+		{
+			return (x * vector.x + y * vector.y + z * vector.z + w * vector.w);
+		}
+
 		std::string toString() const
 		{
 			std::stringstream result;

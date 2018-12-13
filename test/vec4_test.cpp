@@ -434,6 +434,16 @@ namespace {
 		EXPECT_FLOAT_EQ(distance, 6.4031243f);
 	}
 
+	TEST_F(Vec4Test, dotProduct)
+	{
+		math::vec4 vecOne(10.0f, 20.0f, 30.0f, 40.0f);
+		math::vec4 vecTwo(4.0f, 3.0f, 2.0f, 1.0f);
+
+		float dotProduct = vecOne.dot(vecTwo);
+
+		EXPECT_EQ(dotProduct, 200.0f);
+	}
+
 	TEST_F(Vec4Test, toString)
 	{
 		math::vec4 vec(1.0f, 2.0f, 3.0f, 4.0f);
