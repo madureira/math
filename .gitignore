@@ -4,5 +4,10 @@
 *.vcxproj.user
 bin/
 packages/
+report/
+coverage_bin/
 *.o
 *.a
+*.gcda
+*.gcno
+*.info
