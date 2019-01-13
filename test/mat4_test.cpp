@@ -7,14 +7,11 @@ namespace {
 
 	TEST_F(Mat4Test, initByDefaultValues)
 	{
-		/*
 		math::mat4 matrix;
 
 		for (auto element : matrix.elements) {
 			EXPECT_EQ(element, 0.0f);
 		}
-		*/
-		EXPECT_EQ(true, true);
 	}
 
 }
