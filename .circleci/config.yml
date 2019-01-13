@@ -12,8 +12,11 @@ jobs:
           name: Install GoogleTest
           command: git submodule init && git submodule update
       - run:
-          name: Running Tests
-          command: make coverage && cd report && bash <(curl -s https://codecov.io/bash)
+          name: Running tests
+          command: make coverage
+      - run:
+          name: Uploading coverage
+          command: cd report && bash <(curl -s https://codecov.io/bash) -f coverage.info
 
 workflows:
   version: 2

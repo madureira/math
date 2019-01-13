@@ -92,10 +92,7 @@ combine_coverages : collect_coverage
 	lcov -a ./base.info -a ./test.info -o ./total.info
 
 filter_coverage : combine_coverages
-	lcov -r ./total.info '/usr/include/*' 'include/gtest/*' 'src/*' '*/math/test/*' -o ./filtered.info
+	lcov -r ./total.info '/usr/include/*' 'include/gtest/*' 'src/*' '*/math/test/*' -o ./coverage.info
 
 coverage : filter_coverage
-	rm -rf report
-	mkdir report
-	genhtml ./filtered.info --branch-coverage --output-directory ./report
-	rm -rf base.info bin coverage_bin base.info test.info total.info filtered.info
+	rm -rf base.info bin coverage_bin base.info test.info total.info
