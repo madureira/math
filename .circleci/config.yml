@@ -2,12 +2,15 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: gcc:latest
+      - image: "debian:stretch"
     steps:
       - checkout
       - run:
-          name: Install System Dependencies
-          command: apt-get update && apt-get install -y lcov
+          name: Install Sudo
+          command: 'apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*'
+      - run:
+          name: Installing System Dependencies
+          command: 'apt-get update && apt-get install -y gcc g++ lcov'
       - run:
           name: Install GoogleTest
           command: git submodule init && git submodule update
