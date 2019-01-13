@@ -2,6 +2,7 @@
 A lightweight, dependency-free and header only C++ mathematics library.
 
 [![Circle CI](https://circleci.com/gh/madureira/math.svg?style=svg)](https://circleci.com/gh/madureira/math)
+[![codecov](https://codecov.io/gh/madureira/math/branch/master/graph/badge.svg)](https://codecov.io/gh/madureira/math)
 
 ## How to use
 
