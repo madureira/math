@@ -18,20 +18,10 @@ TESTS = vec2_test vec3_test vec4_test
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11 -I$(INCLUDES_DIR)
+CXXFLAGS += -g --coverage -fprofile-arcs -ftest-coverage -Wall -Wextra -pthread -std=c++11 -I$(INCLUDES_DIR)
 
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
-
-all : $(TESTS) clean
-
-clean :
-	rm -rf bin/
-	mkdir bin/
-	cp *.o bin/
-	cp *.a bin/
-	cp $(TESTS) bin/
-	rm *.o *.a $(TESTS)
 
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 
@@ -69,7 +59,44 @@ vec4_test : vec4_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 
-test: vec2_test vec3_test vec4_test clean
+all : $(TESTS) clean
+
+clean :
+	rm -rf bin/
+	mkdir bin/
+	cp *.o bin/
+	cp *.a bin/
+	cp $(TESTS) bin/
+	rm *.o *.a $(TESTS)
+
+build_tests : vec2_test vec3_test vec4_test
+
+prepare_coverage : build_tests
+	rm -rf coverage_bin
+	mkdir coverage_bin
+	cp *.gcno coverage_bin/
+	rm *.gcno
+	lcov -c -i -d ./coverage_bin -o ./base.info
+
+test : prepare_coverage clean
 	./bin/vec2_test && \
 	./bin/vec3_test && \
 	./bin/vec4_test
+
+collect_coverage : test
+	cp *.gcda coverage_bin/
+	rm *.gcda
+	lcov -c -d ./coverage_bin -o ./test.info
+
+combine_coverages : collect_coverage
+	lcov -a ./base.info -a ./test.info -o ./total.info
+
+filter_coverage : combine_coverages
+	lcov -r ./total.info '/usr/include/*' 'include/gtest/*' 'src/*' '*/math/test/*' -o ./filtered.info
+
+coverage : filter_coverage
+	rm -rf report
+	mkdir report
+	genhtml ./filtered.info --branch-coverage --output-directory ./report
+	rm -rf base.info bin coverage_bin base.info test.info total.info filtered.info
+	cd report && bash <(curl -s https://codecov.io/bash)
