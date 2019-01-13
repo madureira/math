@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Sudo
+          command: apt-get install -y sudo
+      - run:
           name: Install System Dependencies
           command: sudo apt-get update && sudo apt-get install -y lcov
       - run:
