@@ -16,7 +16,7 @@ jobs:
           command: make coverage
       - run:
           name: Uploading coverage
-          command: cd report && bash <(curl -s https://codecov.io/bash) -f coverage.info
+          command: bash <(curl -s https://codecov.io/bash) -f coverage.info
 
 workflows:
   version: 2
