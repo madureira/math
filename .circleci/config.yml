@@ -5,10 +5,15 @@ jobs:
       - image: gcc:latest
     steps:
       - checkout
-      - run: apt-get update && apt-get install -y lcov
-      - run: git submodule init
-      - run: git submodule update
-      - run: make coverage
+      - run:
+        name: Install System Dependencies
+        command: sudo apt-get update && sudo apt-get install -y lcov
+      - run:
+        name: Install GoogleTest
+        command: git submodule init && git submodule update
+      - run:
+        name: Running Tests
+        command: make coverage
 
 workflows:
   version: 2
