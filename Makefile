@@ -99,4 +99,4 @@ coverage : filter_coverage
 	mkdir report
 	genhtml ./filtered.info --branch-coverage --output-directory ./report
 	rm -rf base.info bin coverage_bin base.info test.info total.info filtered.info
-	cd report && bash <(curl -s https://codecov.io/bash)
+	cd report && bash -c "<(curl -s https://codecov.io/bash)"
