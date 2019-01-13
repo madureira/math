@@ -5,6 +5,7 @@ jobs:
       - image: gcc:latest
     steps:
       - checkout
+      - run: apt-get update && apt-get install -y lcov
       - run: git submodule init
       - run: git submodule update
       - run: make coverage
