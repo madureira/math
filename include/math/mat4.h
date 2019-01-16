@@ -255,7 +255,13 @@ namespace math {
 
 		mat4 scale(const vec3& scale)
 		{
+			mat4 matrix(1.0f);
 
+			matrix.elements[0 + 0 * 4] = scale.x;
+			matrix.elements[1 + 1 * 4] = scale.y;
+			matrix.elements[2 + 2 * 4] = scale.z;
+
+			return matrix;
 		}
 
 		mat4 transpose(const mat4& matrix)
