@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+#include "vec3.h"
 #include "vec4.h"
 
 namespace math {
@@ -224,6 +226,59 @@ namespace math {
 			elements[index + 1 * 4] = column.y;
 			elements[index + 2 * 4] = column.z;
 			elements[index + 3 * 4] = column.w;
+		}
+
+		mat4 orthographic(float left, float right, float bottom, float top, float near, float far)
+		{
+
+		}
+
+		mat4 perspective(float fov, float aspectRatio, float near, float far)
+		{
+
+		}
+
+		mat4 lookAt(const vec3& camera, const vec3& object, const vec3& up)
+		{
+
+		}
+
+		mat4 translate(const vec3& translation)
+		{
+
+		}
+
+		mat4 rotate(float angle, const vec3& axis)
+		{
+
+		}
+
+		mat4 scale(const vec3& scale)
+		{
+
+		}
+
+		mat4 transpose(const mat4& matrix)
+		{
+
+		}
+
+		std::string toString() const
+		{
+			std::stringstream result;
+
+			result << "mat4: [" << rows[0].x << ", " << rows[1].x << ", " << rows[2].x << ", " << rows[3].x << "] ";
+			result << "[" << rows[0].y << ", " << rows[1].y << ", " << rows[2].y << ", " << rows[3].y << "] ";
+			result << "[" << rows[0].z << ", " << rows[1].z << ", " << rows[2].z << ", " << rows[3].z << "] ";
+			result << "[" << rows[0].w << ", " << rows[1].w << ", " << rows[2].w << ", " << rows[3].w << "]";
+
+			return result.str();
+		}
+
+		friend std::ostream& operator<<(std::ostream& stream, const mat4& matrix)
+		{
+			stream << matrix.toString();
+			return stream;
 		}
 	};
 

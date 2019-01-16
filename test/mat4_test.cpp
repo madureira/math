@@ -329,6 +329,31 @@ namespace {
 		EXPECT_FLOAT_EQ(thirdyColumn.y, 88.0f);
 		EXPECT_FLOAT_EQ(thirdyColumn.z, 77.0f);
 		EXPECT_FLOAT_EQ(thirdyColumn.w, 66.0f);
+	}
 
+	TEST_F(Mat4Test, shouldConvertMatrixToString)
+	{
+		math::mat4 matrix;
+
+		matrix.elements[0] = 2.0f;
+		matrix.elements[1] = 5.0f;
+		matrix.elements[2] = 0.0f;
+		matrix.elements[3] = 8.0f;
+		matrix.elements[4] = 7.0f;
+		matrix.elements[5] = 10.0f;
+		matrix.elements[6] = 0.0f;
+		matrix.elements[7] = 4.0f;
+		matrix.elements[8] = 1.0f;
+		matrix.elements[9] = 3.0f;
+		matrix.elements[10] = 0.0f;
+		matrix.elements[11] = 8.0f;
+		matrix.elements[12] = 4.0f;
+		matrix.elements[13] = 8.0f;
+		matrix.elements[14] = 0.0f;
+		matrix.elements[15] = 12.0f;
+
+		std::string expectedString = "mat4: [2, 7, 1, 4] [5, 10, 3, 8] [0, 0, 0, 0] [8, 4, 8, 12]";
+
+		EXPECT_EQ(matrix.toString(), expectedString);
 	}
 }
