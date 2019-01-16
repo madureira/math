@@ -268,4 +268,67 @@ namespace {
 		EXPECT_FLOAT_EQ(matrix.elements[15], 0.020833334f);
 	}
 
+	TEST_F(Mat4Test, shouldGetMatrixColumnByIndex)
+	{
+		math::mat4 matrix;
+
+		matrix.elements[0] = 2.0f;
+		matrix.elements[1] = 5.0f;
+		matrix.elements[2] = 6.0f;
+		matrix.elements[3] = 8.0f;
+		matrix.elements[4] = 7.0f;
+		matrix.elements[5] = 10.0f;
+		matrix.elements[6] = 5.0f;
+		matrix.elements[7] = 4.0f;
+		matrix.elements[8] = 1.0f;
+		matrix.elements[9] = 3.0f;
+		matrix.elements[10] = 4.0f;
+		matrix.elements[11] = 8.0f;
+		matrix.elements[12] = 4.0f;
+		matrix.elements[13] = 8.0f;
+		matrix.elements[14] = 9.0f;
+		matrix.elements[15] = 12.0f;
+
+		math::vec4 secondColumn = matrix.getColumn(1);
+
+		EXPECT_FLOAT_EQ(secondColumn.x, 5.0f);
+		EXPECT_FLOAT_EQ(secondColumn.y, 10.0f);
+		EXPECT_FLOAT_EQ(secondColumn.z, 3.0f);
+		EXPECT_FLOAT_EQ(secondColumn.w, 8.0f);
+
+	}
+
+	TEST_F(Mat4Test, shouldSetMatrixColumn)
+	{
+		math::mat4 matrix;
+
+		matrix.elements[0] = 2.0f;
+		matrix.elements[1] = 5.0f;
+		matrix.elements[2] = 0.0f;
+		matrix.elements[3] = 8.0f;
+		matrix.elements[4] = 7.0f;
+		matrix.elements[5] = 10.0f;
+		matrix.elements[6] = 0.0f;
+		matrix.elements[7] = 4.0f;
+		matrix.elements[8] = 1.0f;
+		matrix.elements[9] = 3.0f;
+		matrix.elements[10] = 0.0f;
+		matrix.elements[11] = 8.0f;
+		matrix.elements[12] = 4.0f;
+		matrix.elements[13] = 8.0f;
+		matrix.elements[14] = 0.0f;
+		matrix.elements[15] = 12.0f;
+
+		math::vec4 newDataColumn = math::vec4(99.0f, 88.0f, 77.0f, 66.0f);
+
+		matrix.setColumn(2, newDataColumn);
+
+		math::vec4 thirdyColumn = matrix.getColumn(2);
+
+		EXPECT_FLOAT_EQ(thirdyColumn.x, 99.0f);
+		EXPECT_FLOAT_EQ(thirdyColumn.y, 88.0f);
+		EXPECT_FLOAT_EQ(thirdyColumn.z, 77.0f);
+		EXPECT_FLOAT_EQ(thirdyColumn.w, 66.0f);
+
+	}
 }

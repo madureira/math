@@ -207,6 +207,24 @@ namespace math {
 
 			return true;
 		}
+
+		vec4 getColumn(int index)
+		{
+			return vec4(
+				elements[index + 0 * 4],
+				elements[index + 1 * 4],
+				elements[index + 2 * 4],
+				elements[index + 3 * 4]
+			);
+		}
+
+		void setColumn(int index, const vec4& column)
+		{
+			elements[index + 0 * 4] = column.x;
+			elements[index + 1 * 4] = column.y;
+			elements[index + 2 * 4] = column.z;
+			elements[index + 3 * 4] = column.w;
+		}
 	};
 
 }
