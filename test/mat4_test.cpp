@@ -5,6 +5,14 @@ namespace {
 
 	class Mat4Test : public ::testing::Test {};
 
+	void fillMatrix(math::mat4& matrix, int start, int end, float value)
+	{
+		for (int i = start; i <= end; i++)
+		{
+			matrix.elements[i] = value;
+		}
+	}
+
 	TEST_F(Mat4Test, initByDefaultValues)
 	{
 		math::mat4 matrix;
@@ -86,47 +94,17 @@ namespace {
 	{
 		math::mat4 matrixOne;
 
-		matrixOne.elements[0] = 1.0f;
-		matrixOne.elements[1] = 1.0f;
-		matrixOne.elements[2] = 1.0f;
-		matrixOne.elements[3] = 1.0f;
-
-		matrixOne.elements[4] = 2.0f;
-		matrixOne.elements[5] = 2.0f;
-		matrixOne.elements[6] = 2.0f;
-		matrixOne.elements[7] = 2.0f;
-
-		matrixOne.elements[8] = 3.0f;
-		matrixOne.elements[9] = 3.0f;
-		matrixOne.elements[10] = 3.0f;
-		matrixOne.elements[11] = 3.0f;
-
-		matrixOne.elements[12] = 4.0f;
-		matrixOne.elements[13] = 4.0f;
-		matrixOne.elements[14] = 4.0f;
-		matrixOne.elements[15] = 4.0f;
+		fillMatrix(matrixOne, 0, 3, 1.0f);
+		fillMatrix(matrixOne, 4, 7, 2.0f);
+		fillMatrix(matrixOne, 8, 11, 3.0f);
+		fillMatrix(matrixOne, 12, 15, 4.0f);
 
 		math::mat4 matrixTwo;
 
-		matrixTwo.elements[0] = 5.0f;
-		matrixTwo.elements[1] = 5.0f;
-		matrixTwo.elements[2] = 5.0f;
-		matrixTwo.elements[3] = 5.0f;
-
-		matrixTwo.elements[4] = 6.0f;
-		matrixTwo.elements[5] = 6.0f;
-		matrixTwo.elements[6] = 6.0f;
-		matrixTwo.elements[7] = 6.0f;
-
-		matrixTwo.elements[8] = 7.0f;
-		matrixTwo.elements[9] = 7.0f;
-		matrixTwo.elements[10] = 7.0f;
-		matrixTwo.elements[11] = 7.0f;
-
-		matrixTwo.elements[12] = 8.0f;
-		matrixTwo.elements[13] = 8.0f;
-		matrixTwo.elements[14] = 8.0f;
-		matrixTwo.elements[15] = 8.0f;
+		fillMatrix(matrixTwo, 0, 3, 5.0f);
+		fillMatrix(matrixTwo, 4, 7, 6.0f);
+		fillMatrix(matrixTwo, 8, 11, 7.0f);
+		fillMatrix(matrixTwo, 12, 15, 8.0f);
 
 		math::mat4& result = matrixOne.multiply(matrixTwo);
 
@@ -152,47 +130,17 @@ namespace {
 	{
 		math::mat4 matrixOne;
 
-		matrixOne.elements[0] = 1.0f;
-		matrixOne.elements[1] = 1.0f;
-		matrixOne.elements[2] = 1.0f;
-		matrixOne.elements[3] = 1.0f;
-
-		matrixOne.elements[4] = 2.0f;
-		matrixOne.elements[5] = 2.0f;
-		matrixOne.elements[6] = 2.0f;
-		matrixOne.elements[7] = 2.0f;
-
-		matrixOne.elements[8] = 3.0f;
-		matrixOne.elements[9] = 3.0f;
-		matrixOne.elements[10] = 3.0f;
-		matrixOne.elements[11] = 3.0f;
-
-		matrixOne.elements[12] = 4.0f;
-		matrixOne.elements[13] = 4.0f;
-		matrixOne.elements[14] = 4.0f;
-		matrixOne.elements[15] = 4.0f;
+		fillMatrix(matrixOne, 0, 3, 1.0f);
+		fillMatrix(matrixOne, 4, 7, 2.0f);
+		fillMatrix(matrixOne, 8, 11, 3.0f);
+		fillMatrix(matrixOne, 12, 15, 4.0f);
 
 		math::mat4 matrixTwo;
 
-		matrixTwo.elements[0] = 5.0f;
-		matrixTwo.elements[1] = 5.0f;
-		matrixTwo.elements[2] = 5.0f;
-		matrixTwo.elements[3] = 5.0f;
-
-		matrixTwo.elements[4] = 6.0f;
-		matrixTwo.elements[5] = 6.0f;
-		matrixTwo.elements[6] = 6.0f;
-		matrixTwo.elements[7] = 6.0f;
-
-		matrixTwo.elements[8] = 7.0f;
-		matrixTwo.elements[9] = 7.0f;
-		matrixTwo.elements[10] = 7.0f;
-		matrixTwo.elements[11] = 7.0f;
-
-		matrixTwo.elements[12] = 8.0f;
-		matrixTwo.elements[13] = 8.0f;
-		matrixTwo.elements[14] = 8.0f;
-		matrixTwo.elements[15] = 8.0f;
+		fillMatrix(matrixTwo, 0, 3, 5.0f);
+		fillMatrix(matrixTwo, 4, 7, 6.0f);
+		fillMatrix(matrixTwo, 8, 11, 7.0f);
+		fillMatrix(matrixTwo, 12, 15, 8.0f);
 
 		math::mat4 result = matrixOne * matrixTwo;
 
@@ -212,6 +160,112 @@ namespace {
 		EXPECT_FLOAT_EQ(result.elements[13], 104.0f);
 		EXPECT_FLOAT_EQ(result.elements[14], 104.0f);
 		EXPECT_FLOAT_EQ(result.elements[15], 104.0f);
+	}
+
+	TEST_F(Mat4Test, operatorTimesEquals)
+	{
+		math::mat4 matrixOne;
+
+		fillMatrix(matrixOne, 0, 3, 1.0f);
+		fillMatrix(matrixOne, 4, 7, 2.0f);
+		fillMatrix(matrixOne, 8, 11, 3.0f);
+		fillMatrix(matrixOne, 12, 15, 4.0f);
+
+		math::mat4 matrixTwo;
+
+		fillMatrix(matrixTwo, 0, 3, 5.0f);
+		fillMatrix(matrixTwo, 4, 7, 6.0f);
+		fillMatrix(matrixTwo, 8, 11, 7.0f);
+		fillMatrix(matrixTwo, 12, 15, 8.0f);
+
+		matrixOne *= matrixTwo;
+
+		EXPECT_FLOAT_EQ(matrixOne.elements[0], 26.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[1], 26.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[2], 26.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[3], 26.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[4], 52.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[5], 52.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[6], 52.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[7], 52.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[8], 78.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[9], 78.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[10], 78.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[11], 78.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[12], 104.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[13], 104.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[14], 104.0f);
+		EXPECT_FLOAT_EQ(matrixOne.elements[15], 104.0f);
+	}
+
+	TEST_F(Mat4Test, shouldNotInvertAMatrixWithDeterminantEqualsZero)
+	{
+		math::mat4 matrix;
+
+		fillMatrix(matrix, 0, 3, 1.0f);
+		fillMatrix(matrix, 4, 7, 2.0f);
+		fillMatrix(matrix, 8, 11, 3.0f);
+		fillMatrix(matrix, 12, 15, 4.0f);
+
+		EXPECT_FALSE(matrix.invert());
+
+		EXPECT_FLOAT_EQ(matrix.elements[0], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[1], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[2], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[3], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[4], 2.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[5], 2.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[6], 2.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[7], 2.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[8], 3.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[9], 3.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[10], 3.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[11], 3.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[12], 4.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[13], 4.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[14], 4.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[15], 4.0f);
+	}
+
+	TEST_F(Mat4Test, shouldInvertAMatrix)
+	{
+		math::mat4 matrix;
+
+		matrix.elements[0] = 2.0f;
+		matrix.elements[1] = 5.0f;
+		matrix.elements[2] = 6.0f;
+		matrix.elements[3] = 8.0f;
+		matrix.elements[4] = 7.0f;
+		matrix.elements[5] = 10.0f;
+		matrix.elements[6] = 5.0f;
+		matrix.elements[7] = 4.0f;
+		matrix.elements[8] = 1.0f;
+		matrix.elements[9] = 3.0f;
+		matrix.elements[10] = 4.0f;
+		matrix.elements[11] = 8.0f;
+		matrix.elements[12] = 4.0f;
+		matrix.elements[13] = 8.0f;
+		matrix.elements[14] = 9.0f;
+		matrix.elements[15] = 12.0f;
+
+		EXPECT_TRUE(matrix.invert());
+
+		EXPECT_FLOAT_EQ(matrix.elements[0], -2.5f);
+		EXPECT_FLOAT_EQ(matrix.elements[1], -0.16666667f);
+		EXPECT_FLOAT_EQ(matrix.elements[2], -0.16666667f);
+		EXPECT_FLOAT_EQ(matrix.elements[3], 1.8333334f);
+		EXPECT_FLOAT_EQ(matrix.elements[4], 2.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[5], 0.33333334f);
+		EXPECT_FLOAT_EQ(matrix.elements[6], 0.33333334f);
+		EXPECT_FLOAT_EQ(matrix.elements[7], -1.66666666667);
+		EXPECT_FLOAT_EQ(matrix.elements[8], -0.25f);
+		EXPECT_FLOAT_EQ(matrix.elements[9], -0.25f);
+		EXPECT_FLOAT_EQ(matrix.elements[10], -0.75f);
+		EXPECT_FLOAT_EQ(matrix.elements[11], 0.75f);
+		EXPECT_FLOAT_EQ(matrix.elements[12], -0.3125f);
+		EXPECT_FLOAT_EQ(matrix.elements[13], 0.020833334f);
+		EXPECT_FLOAT_EQ(matrix.elements[14], 0.3958333f);
+		EXPECT_FLOAT_EQ(matrix.elements[15], 0.020833334f);
 	}
 
 }
