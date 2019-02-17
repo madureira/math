@@ -10,7 +10,7 @@ INCLUDES_DIR = ./include
 TESTS_DIR = ./test
 
 # Test file names without .cpp extension.
-TESTS = vec2_test vec3_test vec4_test mat4_test
+TESTS = vec2_test vec3_test vec4_test mat4_test funcs_test
 
 # Flags passed to the preprocessor.
 # Set Google Test's header directory as a system directory, such that
@@ -52,6 +52,9 @@ vec4_test.o :
 mat4_test.o :
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TESTS_DIR)/mat4_test.cpp
 
+funcs_test.o :
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TESTS_DIR)/funcs_test.cpp
+
 vec2_test : vec2_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
@@ -64,6 +67,8 @@ vec4_test : vec4_test.o gtest_main.a
 mat4_test : mat4_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
+funcs_test : funcs_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 all : $(TESTS) clean
 
@@ -75,7 +80,7 @@ clean :
 	cp $(TESTS) bin/
 	rm *.o *.a $(TESTS)
 
-build_tests : vec2_test vec3_test vec4_test mat4_test
+build_tests : $(TESTS)
 
 prepare_coverage : build_tests
 	rm -rf coverage_bin
@@ -88,7 +93,8 @@ test : prepare_coverage clean
 	./bin/vec2_test && \
 	./bin/vec3_test && \
 	./bin/vec4_test && \
-	./bin/mat4_test
+	./bin/mat4_test && \
+	./bin/funcs_test
 
 collect_coverage : test
 	cp *.gcda coverage_bin/
