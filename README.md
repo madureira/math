@@ -14,11 +14,14 @@ You need just to add the `include` directory to your project's include path.
 #include <math/vec3.h>
 #include <math/vec4.h>
 #include <math/mat4.h>
+#include <math/funcs.h>
 
 math::vec2 coordinates(10.0f, 15.0f);
 coordinates.add(math::vec2(20.0f, 30.0f));
 
 math::vec4 position(coordinates + math::vec2(1.0f, 2.0f));
+
+float radians = math::funcs::toRadians(45.0f);
 ```
 
 ## Test
