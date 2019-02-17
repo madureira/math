@@ -1,10 +1,9 @@
 #pragma once
 
 #include <string>
+#include "funcs.h"
 #include "vec3.h"
 #include "vec4.h"
-
-constexpr auto MATH_PI = 3.14159265358f;
 
 namespace math {
 
@@ -254,7 +253,7 @@ namespace math {
 		{
 			mat4 result(1.0f);
 
-			float q = 1.0f / tan(toRadians(0.5f * fov));
+			float q = 1.0f / tan(math::funcs::toRadians(0.5f * fov));
 			float a = q / aspectRatio;
 			float b = (near + far) / (near - far);
 			float c = (2.0f * near * far) / (near - far);
@@ -304,7 +303,7 @@ namespace math {
 		{
 			mat4 result(1.0f);
 
-			float r = toRadians(angle);
+			float r = math::funcs::toRadians(angle);
 			float c = cos(r);
 			float s = sin(r);
 			float omc = 1.0f - c;
@@ -363,11 +362,6 @@ namespace math {
 		{
 			stream << matrix.toString();
 			return stream;
-		}
-
-		float toRadians(float degrees)
-		{
-			return (float)(degrees * (MATH_PI / 180.0f));
 		}
 	};
 
