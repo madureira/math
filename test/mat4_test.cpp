@@ -333,7 +333,26 @@ namespace {
 
 	TEST_F(Mat4Test, shouldCalculateTheOrthographicMatrix)
 	{
-		EXPECT_FLOAT_EQ(1.0f, 1.0f);
+		math::mat4 matrix;
+
+		matrix = matrix.orthographic(30.0f, 10.0f, 40.0f, 20.0f, 10.0f, 6.0f);
+
+		EXPECT_FLOAT_EQ(matrix.elements[0], -0.1f);
+		EXPECT_FLOAT_EQ(matrix.elements[1], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[2], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[3], 2.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[4], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[5], -0.1f);
+		EXPECT_FLOAT_EQ(matrix.elements[6], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[7], 3.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[8], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[9], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[10], 0.5f);
+		EXPECT_FLOAT_EQ(matrix.elements[11], -4.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[12], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[13], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[14], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[15], 1.0f);
 	}
 
 	TEST_F(Mat4Test, shouldCalculateThePerspective)
@@ -348,7 +367,26 @@ namespace {
 
 	TEST_F(Mat4Test, shouldTranslateTheMatrix)
 	{
-		EXPECT_FLOAT_EQ(1.0f, 1.0f);
+		math::mat4 matrix;
+
+		matrix = matrix.translate(math::vec3(5.0f, 6.0f, 7.0f));
+
+		EXPECT_FLOAT_EQ(matrix.elements[0], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[1], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[2], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[3], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[4], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[5], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[6], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[7], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[8], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[9], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[10], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[11], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[12], 5.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[13], 6.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[14], 7.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[15], 1.0f);
 	}
 
 	TEST_F(Mat4Test, shouldRotateTheMatrix)

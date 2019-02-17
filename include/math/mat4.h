@@ -230,7 +230,19 @@ namespace math {
 
 		mat4 orthographic(float left, float right, float bottom, float top, float near, float far)
 		{
+			mat4 result(1.0f);
 
+			result.elements[0 + 0 * 4] = 2.0f / (right - left);
+
+			result.elements[1 + 1 * 4] = 2.0f / (top - bottom);
+
+			result.elements[2 + 2 * 4] = 2.0f / (near - far);
+
+			result.elements[3 + 0 * 4] = (left + right) / (left - right);
+			result.elements[3 + 1 * 4] = (bottom + top) / (bottom - top);
+			result.elements[3 + 2 * 4] = (far + near) / (far - near);
+
+			return result;
 		}
 
 		mat4 perspective(float fov, float aspectRatio, float near, float far)
@@ -245,7 +257,13 @@ namespace math {
 
 		mat4 translate(const vec3& translation)
 		{
+			mat4 result(1.0f);
 
+			result.elements[0 + 3 * 4] = translation.x;
+			result.elements[1 + 3 * 4] = translation.y;
+			result.elements[2 + 3 * 4] = translation.z;
+
+			return result;
 		}
 
 		mat4 rotate(float angle, const vec3& axis)
