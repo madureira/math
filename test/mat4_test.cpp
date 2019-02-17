@@ -357,12 +357,54 @@ namespace {
 
 	TEST_F(Mat4Test, shouldCalculateThePerspective)
 	{
-		EXPECT_FLOAT_EQ(1.0f, 1.0f);
+		math::mat4 matrix;
+
+		matrix = matrix.perspective(30.0f, 16.10f, 40.0f, 20.0f);
+
+		EXPECT_FLOAT_EQ(matrix.elements[0], 0.2318044f);
+		EXPECT_FLOAT_EQ(matrix.elements[1], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[2], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[3], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[4], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[5], 3.7320509f);
+		EXPECT_FLOAT_EQ(matrix.elements[6], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[7], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[8], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[9], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[10], 3.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[11], 80.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[12], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[13], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[14], -1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[15], 1.0f);
 	}
 
 	TEST_F(Mat4Test, shouldLookAt)
 	{
-		EXPECT_FLOAT_EQ(1.0f, 1.0f);
+		math::mat4 matrix;
+
+		matrix = matrix.lookAt(
+			math::vec3(1.0f, 1.0f, 1.0f),
+			math::vec3(3.0f, 3.0f, 3.0f),
+			math::vec3(2.0f, 2.0f, 2.0f)
+		);
+
+		EXPECT_FLOAT_EQ(matrix.elements[0], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[1], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[2], -0.57735026f);
+		EXPECT_FLOAT_EQ(matrix.elements[3], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[4], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[5], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[6], -0.57735026f);
+		EXPECT_FLOAT_EQ(matrix.elements[7], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[8], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[9], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[10], -0.57735026f);
+		EXPECT_FLOAT_EQ(matrix.elements[11], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[12], -1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[13], -1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[14], -1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[15], 1.0f);
 	}
 
 	TEST_F(Mat4Test, shouldTranslateTheMatrix)
@@ -391,7 +433,26 @@ namespace {
 
 	TEST_F(Mat4Test, shouldRotateTheMatrix)
 	{
-		EXPECT_FLOAT_EQ(1.0f, 1.0f);
+		math::mat4 matrix;
+
+		matrix = matrix.rotate(60.0f, math::vec3(1.0f, 2.0f, 3.0f));
+
+		EXPECT_FLOAT_EQ(matrix.elements[0], 1.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[1], -1.5980763f);
+		EXPECT_FLOAT_EQ(matrix.elements[2], 3.2320509f);
+		EXPECT_FLOAT_EQ(matrix.elements[3], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[4], 3.5980763f);
+		EXPECT_FLOAT_EQ(matrix.elements[5], 2.5f);
+		EXPECT_FLOAT_EQ(matrix.elements[6], 2.1339746f);
+		EXPECT_FLOAT_EQ(matrix.elements[7], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[8], -0.2320509f);
+		EXPECT_FLOAT_EQ(matrix.elements[9], 3.8660254f);
+		EXPECT_FLOAT_EQ(matrix.elements[10], 5.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[11], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[12], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[13], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[14], 0.0f);
+		EXPECT_FLOAT_EQ(matrix.elements[15], 1.0f);
 	}
 
 	TEST_F(Mat4Test, shouldScaleAMatrix)
@@ -469,8 +530,6 @@ namespace {
 		matrix.elements[14] = 0.0f;
 		matrix.elements[15] = 12.0f;
 
-		std::string expectedString = "mat4: [2, 7, 1, 4] [5, 10, 3, 8] [0, 0, 0, 0] [8, 4, 8, 12]";
-
-		EXPECT_EQ(matrix.toString(), expectedString);
+		EXPECT_EQ(matrix.toString(), "mat4: [2, 7, 1, 4] [5, 10, 3, 8] [0, 0, 0, 0] [8, 4, 8, 12]");
 	}
 }

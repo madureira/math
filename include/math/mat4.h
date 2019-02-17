@@ -4,6 +4,8 @@
 #include "vec3.h"
 #include "vec4.h"
 
+constexpr auto MATH_PI = 3.14159265358f;
+
 namespace math {
 
 	struct mat4
@@ -193,7 +195,10 @@ namespace math {
 				elements[8] * elements[1] * elements[6] -
 				elements[8] * elements[2] * elements[5];
 
-			float determinant = elements[0] * temp[0] + elements[1] * temp[4] + elements[2] * temp[8] + elements[3] * temp[12];
+			float determinant = elements[0] * temp[0]
+				+ elements[1] * temp[4]
+				+ elements[2] * temp[8]
+				+ elements[3] * temp[12];
 
 			if (determinant == 0.0f)
 			{
@@ -247,12 +252,41 @@ namespace math {
 
 		mat4 perspective(float fov, float aspectRatio, float near, float far)
 		{
+			mat4 result(1.0f);
 
+			float q = 1.0f / tan(toRadians(0.5f * fov));
+			float a = q / aspectRatio;
+			float b = (near + far) / (near - far);
+			float c = (2.0f * near * far) / (near - far);
+
+			result.elements[0 + 0 * 4] = a;
+			result.elements[1 + 1 * 4] = q;
+			result.elements[2 + 2 * 4] = b;
+			result.elements[2 + 3 * 4] = -1.0f;
+			result.elements[3 + 2 * 4] = c;
+
+			return result;
 		}
 
 		mat4 lookAt(const vec3& camera, const vec3& object, const vec3& up)
 		{
+			mat4 result = identity();
 
+			vec3 f = (object - camera).normalize();
+			vec3 s = f.cross(up.normalize());
+			vec3 u = s.cross(f);
+
+			result.elements[0 + 0 * 4] = s.x;
+			result.elements[0 + 1 * 4] = s.y;
+			result.elements[0 + 2 * 4] = s.z;
+			result.elements[1 + 0 * 4] = u.x;
+			result.elements[1 + 1 * 4] = u.y;
+			result.elements[1 + 2 * 4] = u.z;
+			result.elements[2 + 0 * 4] = -f.x;
+			result.elements[2 + 1 * 4] = -f.y;
+			result.elements[2 + 2 * 4] = -f.z;
+
+			return result * translate(vec3(-camera.x, -camera.y, -camera.z));
 		}
 
 		mat4 translate(const vec3& translation)
@@ -268,7 +302,27 @@ namespace math {
 
 		mat4 rotate(float angle, const vec3& axis)
 		{
+			mat4 result(1.0f);
 
+			float r = toRadians(angle);
+			float c = cos(r);
+			float s = sin(r);
+			float omc = 1.0f - c;
+			float x = axis.x;
+			float y = axis.y;
+			float z = axis.z;
+
+			result.elements[0 + 0 * 4] = x * x * omc + c;
+			result.elements[0 + 1 * 4] = y * x * omc + z * s;
+			result.elements[0 + 2 * 4] = x * z * omc - y * s;
+			result.elements[1 + 0 * 4] = x * y * omc - z * s;
+			result.elements[1 + 1 * 4] = y * y * omc + c;
+			result.elements[1 + 2 * 4] = y * z * omc + x * s;
+			result.elements[2 + 0 * 4] = x * z * omc + y * s;
+			result.elements[2 + 1 * 4] = y * z * omc - x * s;
+			result.elements[2 + 2 * 4] = z * z * omc + c;
+
+			return result;
 		}
 
 		mat4 scale(const vec3& scale)
@@ -296,7 +350,8 @@ namespace math {
 		{
 			std::stringstream result;
 
-			result << "mat4: [" << rows[0].x << ", " << rows[1].x << ", " << rows[2].x << ", " << rows[3].x << "] ";
+			result << "mat4: ";
+			result << "[" << rows[0].x << ", " << rows[1].x << ", " << rows[2].x << ", " << rows[3].x << "] ";
 			result << "[" << rows[0].y << ", " << rows[1].y << ", " << rows[2].y << ", " << rows[3].y << "] ";
 			result << "[" << rows[0].z << ", " << rows[1].z << ", " << rows[2].z << ", " << rows[3].z << "] ";
 			result << "[" << rows[0].w << ", " << rows[1].w << ", " << rows[2].w << ", " << rows[3].w << "]";
@@ -308,6 +363,11 @@ namespace math {
 		{
 			stream << matrix.toString();
 			return stream;
+		}
+
+		float toRadians(float degrees)
+		{
+			return (float)(degrees * (MATH_PI / 180.0f));
 		}
 	};
 
