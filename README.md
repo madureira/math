@@ -9,7 +9,7 @@ A lightweight, dependency-free and header only C++ mathematics library.
 
 You need just to add the `include` directory to your project's include path.
 
-```c
+```cpp
 #include <math/vec2.h>
 #include <math/vec3.h>
 #include <math/vec4.h>
@@ -26,15 +26,12 @@ float radians = math::funcs::toRadians(45.0f);
 
 ## Test
 
-### Installing Google Test library
-
-```sh
-git submodule init
-git submodule update
-```
-
-### Running all tests
+### Linux
 
 ```sh
 make test
 ```
+
+### Windows
+
+Open the solution `math.sln` on [Visual Studio IDE 2019](https://visualstudio.microsoft.com/vs/) to run all unit tests.

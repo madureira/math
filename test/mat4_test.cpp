@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <math/mat4.h>
 
-namespace {
+namespace UnitTests {
 
 	class Mat4Test : public ::testing::Test {};
 

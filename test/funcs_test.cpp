@@ -1,8 +1,7 @@
 #include "pch.h"
 #include <math/funcs.h>
 
-namespace
-{
+namespace UnitTests {
 	class FuncsTest : public ::testing::Test{};
 
 	TEST_F(FuncsTest, shouldConvertDegreesToRadians)

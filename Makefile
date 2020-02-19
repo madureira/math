@@ -1,7 +1,7 @@
 # A sample Makefile for building Tests
 
 # GoogleTest path dir.
-GTEST_DIR = ./test/ext/googletest/googletest
+GTEST_DIR = ./googletest
 
 # Where to find the code to test.
 INCLUDES_DIR = ./include

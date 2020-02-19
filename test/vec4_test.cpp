@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <math/vec4.h>
 
-namespace {
+namespace UnitTests {
 
 	class Vec4Test : public ::testing::Test {};
 
