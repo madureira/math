@@ -11,7 +11,7 @@ namespace math {
 	{
 		union
 		{
-			float elements[4 * 4];
+			float elements[16];
 			vec4 rows[4];
 		};
 
@@ -30,7 +30,7 @@ namespace math {
 		} {}
 
 		mat4(const mat4& matrix) {
-			memcpy(elements, matrix.elements, 4 * 4 * sizeof(float));
+			memcpy(elements, matrix.elements, 16 * sizeof(float));
 		}
 
 		mat4(const vec4& row0, const vec4& row1, const vec4& row2, const vec4& row3)

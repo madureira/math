@@ -34,4 +34,4 @@ make test
 
 ### Windows
 
-Open the solution `math.sln` on [Visual Studio IDE 2019](https://visualstudio.microsoft.com/vs/) to run all unit tests via `Test Explorer`.
+Open the solution `math.sln` on [Visual Studio IDE 2019](https://visualstudio.microsoft.com/vs/) to run all unit tests.
